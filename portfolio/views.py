@@ -96,19 +96,5 @@ def pontuacao_quizz(request):
     return pontos
 
 
-def desenha_grafico_resultados():
-    pontosLista = PontuacaoQuizz.objects.all()
-    pontosLista.sort(key=lambda x: x.pontos)
-    pontosLista.reverse()
-    print(pontosLista)
 
-    nomes_x = []
-    pontos_y = []
-
-    for pessoa in pontosLista:
-        nomes_x.append(pessoa.nome)
-        pontos_y.append(pessoa.pontos)
-
-    nomes_x.reverse()
-    pontos_y.reverse()
 

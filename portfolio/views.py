@@ -97,7 +97,7 @@ def pontuacao_quizz(request):
 
 
 def desenha_grafico_resultados():
-    pontosLista = PontuacaoQuizz.objecst.all()
+    pontosLista = PontuacaoQuizz.objects.all()
     pontosLista.sort(key=lambda x: x.pontos)
     pontosLista.reverse()
     print(pontosLista)

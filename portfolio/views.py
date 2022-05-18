@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from matplotlib import pyplot as plt
+
 from . import forms
 
 from .models import Tarefa, Post, PontuacaoQuizz
@@ -112,5 +112,3 @@ def desenha_grafico_resultados():
     nomes_x.reverse()
     pontos_y.reverse()
 
-    plt.barh(nomes_x, pontos_y)
-    plt.show()

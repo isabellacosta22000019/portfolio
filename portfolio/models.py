@@ -19,7 +19,7 @@ class Post(models.Model):
     data = models.DateTimeField(auto_now_add=True)
     titulo = models.CharField(max_length=20)
     description = models.CharField(max_length=280)
-    image = models.ImageField(upload_to='static/portfolio/images', blank=True) #blank type allows the field to be optional
+
     link = models.URLField(max_length=200, blank=True)
 
     def __str__(self):

@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1', 'minha-app3-heroku.
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
 
 
 # Application definition

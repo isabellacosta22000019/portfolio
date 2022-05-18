@@ -1,0 +1,11 @@
+{% extends 'portfolio/layout.html' %}
+
+{% block main %}
+    {% for tarefa in tarefas %}
+        <p>
+           {{ tarefa.titulo }}
+           <a href="{% url 'portfolio:edita' tarefa.id %}" class="btn btn-warning">Editar</a>
+        </p>
+   {% endfor %}
+        <a href="{% url 'portfolio:nova' %}" class="btn btn-success btn-block">+ Nova Tarefa</a>
+{% endblock %}

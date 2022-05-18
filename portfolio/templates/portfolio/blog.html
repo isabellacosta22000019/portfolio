@@ -1,0 +1,26 @@
+{% extends 'portfolio/layout.html' %}
+
+{% block main %}
+    {% for posts in post %}
+
+        <p>
+           {{ posts.titulo }}
+        </p>
+
+        <p>
+            {{ posts.description }}
+        </p>
+
+
+   {% endfor %}
+        <br>
+        <h3>Novo Post</h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form_post.as_p }}
+
+        <a href="{% url 'portfolio:home' %}" class="btn btn-warning">Cancelar</a>
+        <input type="submit" value="Gravar" class="btn btn-success" >
+        </form>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'portfolio/layout.html' %}
+
+{% block main %}
+
+        <h1>Quizz sobre Programação Web</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+                <fieldset id="main_fieldset">
+
+                    <fieldset class="sub_fieldset">
+                        Informação Pessoal
+                        <p>Nome: <input type="text" name="nome"></p>
+                    </fieldset>
+
+
+                    <fieldset class="sub_fieldset" >
+
+                        Perguntas
+
+                        <p>1. Qual o significado da sigla HTML?</p>
+                        <input type="radio" name="p1" id="p1a1" value="Hyperlinks and Text Markup Language">
+                        <label for="p1a1"></label>Hyperlinks and Text Markup Language<br>
+                        <input type="radio" name="p1" id="p1a2" value="Hyper Text Markup Language">
+                        <label for="p1a2">Hyper Text Markup Language</label><br>
+                        <input type="radio" name="p1" id="p1a3" value="Home Tool Markup Language">
+                        <label for="p1a3">Home Tool Markup Language</label><br>
+
+
+                        <p>2. Qual o significado da sigla CSS?</p>
+                        <input type="checkbox" name="p2" id="p2a1" value="Creative Style Sheets">
+                        <label for="p2a1">Creative Style Sheets</label>
+                        <input type="checkbox" name="p2" id="p2a2" value="Cascading Style Sheets">
+                        <label for="p2a2">Cascading Style Sheets</label>
+                        <input type="checkbox" name="p2" id="p2a3" value="Colorful Style Sheets">
+                        <label for="p2a3">Colorful Style Sheets</label>
+
+
+                        <p>3. Qual das seguintes opções possui a sintax correta para CSS?</p>
+                        <input type="radio" name="p3" id="p3a1" value="body {color: black;}">
+                        <label for="p3a1"></label>body {color: black;}<br>
+                        <input type="radio" name="p3" id="p3a2" value="{body:color=black;}">
+                        <label for="p3a2">{body:color=black;}</label><br>
+                        <input type="radio" name="p3" id="p3a3" value="body:color=black;">
+                        <label for="p3a3">body:color=black;</label><br>
+
+
+
+
+                    </fieldset>
+                </fieldset>
+
+                <a href="{% url 'portfolio:home' %}" class="btn btn-warning">Cancelar</a>
+                <input type="submit" value="Gravar" class="btn btn-success" >
+            </form>
+
+    <p>Você têm: {{ pontos }} pontos</p>
+{% endblock %}

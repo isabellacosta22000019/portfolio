@@ -1,14 +1,14 @@
 {% extends 'portfolio/layout.html' %}
 
 {% block main %}
-    {% for posts in post %}
+    {% for post in posts %}
 
         <p>
-           {{ posts.titulo }}
+           {{ post.titulo }}
         </p>
 
         <p>
-            {{ posts.description }}
+            {{ post.description }}
         </p>
 
 

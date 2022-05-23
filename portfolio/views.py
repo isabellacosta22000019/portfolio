@@ -2,6 +2,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from matplotlib import pyplot as plt
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 from . import forms
 
@@ -24,44 +26,33 @@ def projectos_page_view(request):
     # Parte do Tutorial Tarefa
 
 
-def nova_tarefa_view(request):
-    form = TarefaForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return HttpResponseRedirect(reverse('portfolio:home'))
 
-    context = {'form': form}
-
-    return render(request, 'portfolio/nova.html', context)
-
-
-def edita_tarefa_view(request, tarefa_id):
-    tarefa = Tarefa.objects.get(id=tarefa_id)
-    form = TarefaForm(request.POST or None, instance=tarefa)
+def edita_post_view(request, post_id):
+    post = Post.objects.get(id=post_id)
+    form = PostFormForm(request.POST or None, instance=post)
 
     if form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse('portfolio:home'))
 
-    context = {'form': form, 'tarefa_id': tarefa_id}
-    return render(request, 'portfolio/edita.html', context)
+    context = {'form': form, 'post_id': post_id}
+    return render(request, 'portfolio/edita_post.html', context)
 
 
-def apaga_tarefa_view(request, tarefa_id):
-    Tarefa.objects.get(id=tarefa_id).delete()
+def apaga_post_view(request, post_id):
+    Post.objects.get(id=post_id).delete()
     return HttpResponseRedirect(reverse('portfolio:home'))
 
     # Fim do Tutorial Tarefa
 
 
 def novo_post_view(request):
-    context2 = {'post': Post.objects.all()}
     form = PostForm(request.POST or None)
     if form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse('portfolio:blog'))
 
-    context = {'form_post': form, 'post': Post.objects.all()}
+    context = {'form_post': form, 'posts': Post.objects.all()}
 
     return render(request, 'portfolio/blog.html', context)
 
@@ -76,13 +67,11 @@ def quiz_page_view(request):
         r.save()
         desenha_grafico_resultados(r)
 
-
-
     context = {'pontos': p}
     return render(request, 'portfolio/quiz.html', context)
 
 
-# fazer return render aqui
+
 
 def pontuacao_quizz(request):
     pontos = 0
@@ -99,6 +88,7 @@ def pontuacao_quizz(request):
 
     return pontos
 
+
 def desenha_grafico_resultados(request):
     pontuacoes = sorted(PontuacaoQuizz.objects.all(), key=lambda x: x.pontos, reverse=True)
 
@@ -114,4 +104,29 @@ def desenha_grafico_resultados(request):
     plt.barh(pessoas_x, pontos_y)
 
 
+def view_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
 
+        user = authenticate(
+            request,
+            username=username,
+            password=password)
+
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse('portfolio:home'))
+        else:
+            return render(request, 'portfolio/login.html', {
+                'message': 'Credenciais Inválidas.'
+            })
+
+    return render(request, 'portfolio/login.html')
+
+def view_logout(request):
+    logout(request)
+
+    return render(request, 'portfolio/login.html', {
+        'message': 'Desconectado.'
+    })

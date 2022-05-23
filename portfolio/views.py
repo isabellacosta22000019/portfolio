@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from matplotlib import pyplot as plt
 
 from . import forms
 
@@ -67,13 +68,16 @@ def novo_post_view(request):
 
 def quiz_page_view(request):
     p = 0
+
     if request.method == 'POST':
         n = request.POST['nome']
         p = pontuacao_quizz(request)
         r = PontuacaoQuizz(nome=n, pontos=p)
         r.save()
+        desenha_grafico_resultados(r)
 
-    desenha_grafico_resultados()
+
+
     context = {'pontos': p}
     return render(request, 'portfolio/quiz.html', context)
 
@@ -95,6 +99,19 @@ def pontuacao_quizz(request):
 
     return pontos
 
+def desenha_grafico_resultados(request):
+    pontuacoes = sorted(PontuacaoQuizz.objects.all(), key=lambda x: x.pontos, reverse=True)
+
+    pessoas_x = []
+    pontos_y = []
+
+    for resposta in pontuacoes:
+        pessoas_x.append(resposta.nome)
+        pontos_y.append(resposta.pontos)
+
+    pessoas_x.reverse()
+    pontos_y.reverse()
+    plt.barh(pessoas_x, pontos_y)
 
 
 

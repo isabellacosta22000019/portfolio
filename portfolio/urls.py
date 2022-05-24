@@ -10,8 +10,10 @@ urlpatterns = [
     path('projectos', views.projectos_page_view, name='projectos'),
     path('edita-post/<int:post_id>', views.edita_post_view, name='editar_post'),
     path('apaga-post/<int:post_id>', views.apaga_post_view, name='apagar_post'),
-    path('blog', views.novo_post_view, name='blog'),
+    path('blog', views.blog_page_view, name='blog'),
+    path('novo-post/', views.novo_post_view, name='novo_post'),
     path('quiz', views.quiz_page_view, name='quiz'),
-    path('login', views.view_login, name='login')
+    path('login/', views.view_login, name='login'),
+    path('logout/', views.view_logout, name='logout')
 
 ]

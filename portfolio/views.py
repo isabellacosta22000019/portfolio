@@ -26,7 +26,12 @@ def projectos_page_view(request):
     # Parte do Tutorial Tarefa
 
 
+def blog_page_view(request):
+    context = {'posts': Post.objects.all()}
+    return render(request, 'portfolio/blog.html', context)
 
+
+@login_required
 def edita_post_view(request, post_id):
     post = Post.objects.get(id=post_id)
     form = PostFormForm(request.POST or None, instance=post)
@@ -36,9 +41,10 @@ def edita_post_view(request, post_id):
         return HttpResponseRedirect(reverse('portfolio:home'))
 
     context = {'form': form, 'post_id': post_id}
-    return render(request, 'portfolio/edita_post.html', context)
+    return render(request, 'portfolio/editar_post.html', context)
 
 
+@login_required
 def apaga_post_view(request, post_id):
     Post.objects.get(id=post_id).delete()
     return HttpResponseRedirect(reverse('portfolio:home'))
@@ -46,6 +52,7 @@ def apaga_post_view(request, post_id):
     # Fim do Tutorial Tarefa
 
 
+@login_required
 def novo_post_view(request):
     form = PostForm(request.POST or None)
     if form.is_valid():
@@ -116,9 +123,9 @@ def view_login(request):
 
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse('portfolio:home'))
+            return HttpResponseRedirect(reverse('portfolio:blog'))
         else:
-            return render(request, 'portfolio/login.html', {
+            return render(request, 'portfolio/blog.html', {
                 'message': 'Credenciais Inválidas.'
             })
 

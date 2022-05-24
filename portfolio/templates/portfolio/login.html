@@ -1,15 +1,12 @@
 {% extends 'portfolio/layout.html' %}
 
 {% block main %}
-    <form action="" method="POST">
-    {% csrf_token %}
-        <div class="container">
-            <label>Username : </label>
-            <input type="text" placeholder="Enter Username" name="username" required>
-            <label>Password : </label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-            <button type="submit" value="Login">Login</button>
-            <a href="{% url 'portfolio:home' %}" class="btn btn-warning">Cancelar</a
-        </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="username">
+        <input type="password" name="password" placeholder="password">
+
+        <input type="submit" value="Login">
     </form>
+    <a href="{% url 'portfolio:home' %}">Página Inicial</a>
 {% endblock %}

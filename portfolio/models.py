@@ -38,20 +38,20 @@ class Picture(models.Model):
     image = models.ImageField(upload_to='static/portfolio/images', blank=True)
 
     def __str__(self):
-        return {self.nome}
+        return {self.nome[:50]}
 
 class Professor(models.Model):
     nome = models.CharField(max_length=50)
 
     def __str__(self):
-        return {self.nome}
+        return str(self.nome)
 
 
 class Linguagem(models.Model):
     nome = models.CharField(max_length=50)
 
     def __str__(self):
-        return {self.nome}
+        return str(self.nome)
 
 
 class Projeto(models.Model):
@@ -60,7 +60,7 @@ class Projeto(models.Model):
     ano = models.IntegerField()
 
     def __str__(self):
-        return {self.nome}
+        return str(self.nome)
 
 class Cadeira(models.Model):
     nome = models.CharField(max_length=20)
@@ -72,4 +72,4 @@ class Cadeira(models.Model):
     projetos = models.ManyToManyField(Projeto)
 
     def __str__(self):
-        return {self.nome}
+        return str(self.nome)

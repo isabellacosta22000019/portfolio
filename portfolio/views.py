@@ -1,14 +1,12 @@
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from matplotlib import pyplot as plt
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from .forms import PostForm, CadeiraForm
+from .models import *
 
-from . import forms
-
-from .models import Tarefa, Post, PontuacaoQuizz
-from .forms import TarefaForm, PostForm
 
 
 def home_page_view(request):
@@ -17,7 +15,10 @@ def home_page_view(request):
 
 
 def licenciatura_page_view(request):
-    return render(request, 'portfolio/licenciatura.html')
+    professores = Professor.objects.all()
+    cadeiras = Cadeira.objects.all()
+    context = {'professores': professores, 'cadeiras': cadeiras}
+    return render(request, 'portfolio/licenciatura.html', context)
 
 
 def projectos_page_view(request):
@@ -27,41 +28,42 @@ def projectos_page_view(request):
 
 
 def blog_page_view(request):
-    context = {'posts': Post.objects.all()}
+    form = PostForm
+    context = {'posts': Post.objects.all(), 'form': form}
     return render(request, 'portfolio/blog.html', context)
 
 
 @login_required
-def edita_post_view(request, post_id):
-    post = Post.objects.get(id=post_id)
-    form = PostFormForm(request.POST or None, instance=post)
+def edita_cadeira_view(request, cadeira_id):
+    post = Cadeira.objects.get(id=cadeira_id)
+    form = PostForm(request.POST or None, instance=post)
 
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect(reverse('portfolio:home'))
+        return HttpResponseRedirect(reverse('portfolio:licenciatura'))
 
-    context = {'form': form, 'post_id': post_id}
-    return render(request, 'portfolio/editar_post.html', context)
+    context = {'form': form, 'cadeira_id': cadeira_id}
+    return render(request, 'portfolio/editar_cadeira.html', context)
 
 
 @login_required
-def apaga_post_view(request, post_id):
-    Post.objects.get(id=post_id).delete()
+def apaga_cadeira_view(request, cadeira_id):
+    Cadeira.objects.get(id=cadeira_id).delete()
     return HttpResponseRedirect(reverse('portfolio:home'))
 
     # Fim do Tutorial Tarefa
 
 
 @login_required
-def novo_post_view(request):
-    form = PostForm(request.POST or None)
+def nova_cadeira_view(request):
+    form = CadeiraForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect(reverse('portfolio:blog'))
+        return HttpResponseRedirect(reverse('portfolio:licenciatura'))
 
     context = {'form_post': form, 'posts': Post.objects.all()}
 
-    return render(request, 'portfolio/blog.html', context)
+    return render(request, 'portfolio/licenciatura.html', context)
 
 
 def quiz_page_view(request):

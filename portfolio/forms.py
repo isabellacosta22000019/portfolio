@@ -1,8 +1,10 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Tarefa
-from .models import Post
+from .models import *
 
+PROFESSOR_CHOICES= {
+    Professor.objects.all().model.nome
+}
 
 class TarefaForm(ModelForm):
     class Meta:
@@ -39,7 +41,7 @@ class PostForm(ModelForm):
 
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'titulo do post'}),
-            'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'descroção do conteúdo'}),
+            'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'descrição do conteúdo'}),
             'autor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'nome'}),
         }
 
@@ -48,3 +50,9 @@ class PostForm(ModelForm):
         }
 
 
+class CadeiraForm(ModelForm):
+    class Meta:
+        model: Cadeira
+        nome = forms.CharField(max_length=50)
+        docente_teorica= forms.CharField(label='What is your favorite fruit?', widget=forms.Select(choices=PROFESSOR_CHOICES))
+        docente_pratica= forms.CharField(label='What is your favorite fruit?', widget=forms.Select(choices=PROFESSOR_CHOICES))

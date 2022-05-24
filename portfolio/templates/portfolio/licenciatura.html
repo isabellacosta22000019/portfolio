@@ -1,6 +1,22 @@
 {% extends 'portfolio/layout.html' %}
 
 {% block main %}
-	<h3>Titulo</h3>
+    <a href="{% url 'portfolio:login' %}">Login</a>
+    <a href="{% url 'portfolio:logout' %}">Logout</a>
+	<h3>Programação Web</h3>
+
+    {% for cadeira in cadeiras %}
+        <div>
+        {{ cadeira.nome}}
+        {% for professore in professores %}
+            {% if professore.id == cadeira.docente_teorica.id %}
+                <p>{{ professore.nome }}</p>
+            {% endif %}
+        {% endfor %}
+        </div>
+
+    {% endfor %}
+
+
     <p>texto texto texto texto texto texto texto </p>
 {% endblock %}

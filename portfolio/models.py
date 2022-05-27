@@ -58,7 +58,7 @@ class Projeto(models.Model):
     nome = models.CharField(max_length=50)
     descricao = models.TextField(max_length=300)
     ano = models.IntegerField()
-    image = models.ImageField(null=True)
+    image = models.ImageField()
 
 
     def __str__(self):

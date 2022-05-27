@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from matplotlib import pyplot as plt
-from .forms import PostForm, CadeiraForm
+from .forms import PostForm, CadeiraForm, ProjetoForm
 from .models import *
 
 
@@ -21,22 +21,27 @@ def licenciatura_page_view(request):
     return render(request, 'portfolio/licenciatura.html', context)
 
 
-def projectos_page_view(request):
-    return render(request, 'portfolio/projectos.html')
+
 
     # Parte do Tutorial Tarefa
 
 
 def blog_page_view(request):
-    form = PostForm
+    form = PostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('portfolio:blog'))
     context = {'posts': Post.objects.all(), 'form': form}
     return render(request, 'portfolio/blog.html', context)
 
 
+
+#########       CADEIRA     #########
+
 @login_required
 def edita_cadeira_view(request, cadeira_id):
-    post = Cadeira.objects.get(id=cadeira_id)
-    form = PostForm(request.POST or None, instance=post)
+    cadeira = Cadeira.objects.get(id=cadeira_id)
+    form = CadeiraForm(request.POST or None, instance=cadeira)
 
     if form.is_valid():
         form.save()
@@ -51,19 +56,68 @@ def apaga_cadeira_view(request, cadeira_id):
     Cadeira.objects.get(id=cadeira_id).delete()
     return HttpResponseRedirect(reverse('portfolio:home'))
 
-    # Fim do Tutorial Tarefa
 
-
-@login_required
 def nova_cadeira_view(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('portfolio:login'))
+
     form = CadeiraForm(request.POST or None)
+
     if form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse('portfolio:licenciatura'))
 
-    context = {'form_post': form, 'posts': Post.objects.all()}
+    context = {'form': form}
+    return render(request, 'portfolio/nova_cadeira.html', context)
 
-    return render(request, 'portfolio/licenciatura.html', context)
+#########       CADEIRA     #########
+
+
+
+
+#########       PROJECTO     #########
+
+def projectos_page_view(request):
+    projectos = Projeto.objects.all()
+    context = {'projectos': projectos}
+    return render(request, 'portfolio/projectos.html', context)
+
+
+@login_required
+def edita_projecto_view(request, projecto_id):
+    projecto = Projeto.objects.get(id=projecto_id)
+    form = ProjetoForm(request.POST or None, instance=projecto)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('portfolio:projectos'))
+
+    context = {'form': form, 'projecto_id': projecto_id}
+    return render(request, 'portfolio/home.html', context)
+
+
+@login_required
+def apaga_projecto_view(request, projecto_id):
+    Projeto.objects.get(id=projecto_id).delete()
+    return HttpResponseRedirect(reverse('portfolio:home'))
+
+
+def novo_projecto_view(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('portfolio:login'))
+
+    form = ProjetoForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('portfolio:projectos'))
+
+    context = {'form': form}
+    return render(request, 'portfolio/novo_projecto.html', context)
+
+#########       PROJECTO     #########
+
+
 
 
 def quiz_page_view(request):
@@ -125,9 +179,9 @@ def view_login(request):
 
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse('portfolio:blog'))
+            return HttpResponseRedirect(reverse('portfolio:home'))
         else:
-            return render(request, 'portfolio/blog.html', {
+            return render(request, 'portfolio/licenciatura.html', {
                 'message': 'Credenciais Inválidas.'
             })
 

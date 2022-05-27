@@ -1,8 +1,8 @@
-% extends 'portfolio/base.html' %}
+{% extends 'portfolio/layout.html' %}
 
 {% block main %}
-<h2>Novo Post</h2>
-    >
+<h2>Nova Tarefa</h2>
+
     <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}

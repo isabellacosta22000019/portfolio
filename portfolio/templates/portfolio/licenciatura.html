@@ -1,9 +1,8 @@
 {% extends 'portfolio/layout.html' %}
 
 {% block main %}
-    <a href="{% url 'portfolio:login' %}">Login</a>
-    <a href="{% url 'portfolio:logout' %}">Logout</a>
-	<h3>Programação Web</h3>
+
+	<h3>Licenciatura</h3>
 
     {% for cadeira in cadeiras %}
         <div>
@@ -13,10 +12,17 @@
                 <p>{{ professore.nome }}</p>
             {% endif %}
         {% endfor %}
+        {% if request.user.is_authenticated %}
+                <a href="{% url 'portfolio:editar_cadeira' cadeira.id %}">Editar</a>
+        {% endif %}
         </div>
 
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'portfolio:novo_cadeira' %}">Nova</a>
+    {% endif %}
     {% endfor %}
 
 
-    <p>texto texto texto texto texto texto texto </p>
+    <a href="{% url 'portfolio:login' %}">Login</a>
+    <a href="{% url 'portfolio:logout' %}">Logout</a>
 {% endblock %}

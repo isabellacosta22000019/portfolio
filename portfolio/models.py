@@ -56,20 +56,23 @@ class Linguagem(models.Model):
 
 class Projeto(models.Model):
     nome = models.CharField(max_length=50)
-    descricao = models.CharField
+    descricao = models.TextField(max_length=300)
     ano = models.IntegerField()
+    image = models.ImageField(null=True)
+
 
     def __str__(self):
         return str(self.nome)
 
 class Cadeira(models.Model):
-    nome = models.CharField(max_length=20)
+    nome = models.CharField(max_length=20, default='')
     ano = models.IntegerField()
     descricao = models.TextField()
     linguagens = models.ManyToManyField(Linguagem)
     docente_teorica = models.ForeignKey(Professor, on_delete=models.CASCADE)
-    docentes_praticas = models.ManyToManyField(Professor, related_name='caderias')
+    docentes_praticas = models.ManyToManyField(Professor, related_name='cadeiras')
     projetos = models.ManyToManyField(Projeto)
+
 
     def __str__(self):
         return str(self.nome)

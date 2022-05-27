@@ -67,28 +67,11 @@ class CadeiraForm(ModelForm):
     descricao = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'nome'})
     linguagens = forms.ModelMultipleChoiceField(queryset=Linguagem.objects.all())
     docente_teorica = forms.ModelChoiceField(queryset=Professor.objects.all())
-    docentes_praticas = forms.ModelMultipleChoiceField(queryset=Professor.objects.all())
-    projetos = forms.ModelMultipleChoiceField(queryset=Projeto.objects.all())
+    docentes_praticas = forms.ModelChoiceField(queryset=Professor.objects.all())
+    projetos = forms.ModelChoiceField(queryset=Projeto.objects.all())
+    classificacao = forms.NumberInput(attrs={'class': 'form-control', 'max': 5, 'min': 1})
 
 
-class CadeiraForm(ModelForm):
-    class Meta:
-        model = Cadeira
-        fields = '__all__'
-
-        labels = {
-            'titulo': 'Título',
-            'autor': 'Autor',
-            'description': 'Descrição'
-        }
-
-    nome = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'titulo do post'})
-    ano = forms.NumberInput(attrs={'class': 'form-control', 'max': 3, 'min': 1})
-    descricao = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'nome'})
-    linguagens = forms.ModelMultipleChoiceField(queryset=Linguagem.objects.all())
-    docente_teorica = forms.ModelChoiceField(queryset=Professor.objects.all())
-    docentes_praticas = forms.ModelMultipleChoiceField(queryset=Professor.objects.all())
-    projetos = forms.ModelMultipleChoiceField(queryset=Projeto.objects.all())
 
 
 

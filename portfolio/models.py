@@ -42,10 +42,17 @@ class Picture(models.Model):
 
 class Professor(models.Model):
     nome = models.CharField(max_length=50)
+    linkedin = models.URLField()
 
     def __str__(self):
         return str(self.nome)
 
+class Professor_P(models.Model):
+    nome = models.CharField(max_length=50)
+    linkedin = models.URLField()
+
+    def __str__(self):
+        return str(self.nome)
 
 class Linguagem(models.Model):
     nome = models.CharField(max_length=50)
@@ -65,13 +72,14 @@ class Projeto(models.Model):
         return str(self.nome)
 
 class Cadeira(models.Model):
-    nome = models.CharField(max_length=20, default='')
+    nome = models.CharField(max_length=50, default='')
     ano = models.IntegerField()
+    classificacao = models.IntegerField()
     descricao = models.TextField()
     linguagens = models.ManyToManyField(Linguagem)
     docente_teorica = models.ForeignKey(Professor, on_delete=models.CASCADE)
-    docentes_praticas = models.ManyToManyField(Professor, related_name='cadeiras')
-    projetos = models.ManyToManyField(Projeto)
+    docentes_praticas = models.ForeignKey(Professor_P, on_delete=models.CASCADE)
+    projetos = models.ForeignKey(Projeto, on_delete=models.CASCADE)
 
 
     def __str__(self):

@@ -1,13 +1,24 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
+
+a, u {
+  text-decoration: none;
+}
+
 * {
   padding: 0;
   margin: 0;
-  box-sizing:border-box;
-  font-family: sans-serif;
+
+  font-family: sans-serif, 'Oswald';
+}
+
+body, html {
+    height: 100%;
 }
 
 header {
   height: 10vh;
-  background: purple;
+  background: #222f34;
   color: white;
   top: 0;
 
@@ -32,15 +43,11 @@ nav a {
   padding: 0 1em;
   text-decoration: none;
   font-size: 1rem;
-  color: lightgray;
+  color: #ffffff;
 }
 
 
-main {
-  height: 85vh;
-  background-color:grey;
-  padding: 4em 4em;
-}
+
 
 footer {
   height:5vh;

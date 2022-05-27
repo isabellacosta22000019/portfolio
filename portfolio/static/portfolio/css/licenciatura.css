@@ -1,0 +1,127 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
+a, u {
+  text-decoration: none;
+}
+
+.titulo{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+}
+
+.titulo h3{
+    font-size: 35px;
+}
+
+.titulo h4{
+    font-size: 25px;
+}
+.titulo h4, h3{
+    color: white;
+
+    font-family: sans-serif;
+    font-weight: 400;
+    margin: 15px;
+    text-align: center;
+}
+h1{
+    font-family:'Oswald', sans-serif;
+    font-size: 80px;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    color: white;;
+}
+
+body {
+    background: linear-gradient(-45deg, #1c7a78, #489391, #46bbbb, #bef5fa);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    background-attachment: fixed
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.info{
+    padding: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: 30px;
+    align-items: center;
+}
+
+.cadeiras{
+    height: 100vh;
+
+    margin: 0;
+    box-sizing: border-box;
+    background: url("../images/licenciatura.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 50px;
+
+}
+
+.cadeiras-container{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+    align-items: center;
+}
+
+.cadeira{
+
+    border-radius: 5px;
+    width: 35%;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    transition: 0.2s;
+}
+
+.cadeira-titulo{
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+    padding: 40px 10px;
+
+    font-size: 25px;
+}
+.cadeira-titulo h3{
+    font-family: sans-serif;
+    font-weight: 600;
+    text-transform: none;
+    color: #1a1919;
+}
+.cadeira-texto{
+    padding: 30px;
+    text-align: justify;
+    font-size: 18px;
+    margin-top: 10px;
+    color: #1f1f1f;
+}
+
+.cadeira:hover{
+    transform: scale(1.02);
+    box-shadow: 0 0 30px -10px rgb(177, 174, 177);
+}
+
+@media screen and (max-width:1000px) {
+    .cadeira {
+        width: 40%;
+    }
+}

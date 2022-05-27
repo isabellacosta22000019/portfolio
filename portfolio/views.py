@@ -8,7 +8,6 @@ from .forms import PostForm, CadeiraForm, ProjetoForm
 from .models import *
 
 
-
 def home_page_view(request):
     context = {'tarefas': Tarefa.objects.all()}
     return render(request, 'portfolio/home.html', context)
@@ -21,11 +20,6 @@ def licenciatura_page_view(request):
     return render(request, 'portfolio/licenciatura.html', context)
 
 
-
-
-    # Parte do Tutorial Tarefa
-
-
 def blog_page_view(request):
     form = PostForm(request.POST or None)
     if form.is_valid():
@@ -33,7 +27,6 @@ def blog_page_view(request):
         return HttpResponseRedirect(reverse('portfolio:blog'))
     context = {'posts': Post.objects.all(), 'form': form}
     return render(request, 'portfolio/blog.html', context)
-
 
 
 #########       CADEIRA     #########
@@ -70,8 +63,6 @@ def nova_cadeira_view(request):
     context = {'form': form}
     return render(request, 'portfolio/nova_cadeira.html', context)
 
-#########       CADEIRA     #########
-
 
 
 
@@ -93,7 +84,7 @@ def edita_projecto_view(request, projecto_id):
         return HttpResponseRedirect(reverse('portfolio:projectos'))
 
     context = {'form': form, 'projecto_id': projecto_id}
-    return render(request, 'portfolio/home.html', context)
+    return render(request, 'portfolio/editar_projecto.html', context)
 
 
 @login_required
@@ -115,9 +106,8 @@ def novo_projecto_view(request):
     context = {'form': form}
     return render(request, 'portfolio/novo_projecto.html', context)
 
+
 #########       PROJECTO     #########
-
-
 
 
 def quiz_page_view(request):
@@ -132,8 +122,6 @@ def quiz_page_view(request):
 
     context = {'pontos': p}
     return render(request, 'portfolio/quiz.html', context)
-
-
 
 
 def pontuacao_quizz(request):
@@ -186,6 +174,7 @@ def view_login(request):
             })
 
     return render(request, 'portfolio/login.html')
+
 
 def view_logout(request):
     logout(request)

@@ -1,28 +1,57 @@
 {% extends 'portfolio/layout.html' %}
 
 {% block main %}
-
-	<h3>Licenciatura</h3>
-
-    {% for cadeira in cadeiras %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/licenciatura.css' %}">
+    <div class="titulo">
         <div>
-        {{ cadeira.nome}}
-        {% for professore in professores %}
-            {% if professore.id == cadeira.docente_teorica.id %}
-                <p>{{ professore.nome }}</p>
-            {% endif %}
-        {% endfor %}
-        {% if request.user.is_authenticated %}
-                <a href="{% url 'portfolio:editar_cadeira' cadeira.id %}">Editar</a>
-        {% endif %}
+            <h1>Licenciatura</h1>
+            <h3>Universidade Lusófona</h3>
+            <h4>Engenharia Informática</h4>
         </div>
 
-        {% if request.user.is_authenticated %}
-        <a href="{% url 'portfolio:novo_cadeira' %}">Nova</a>
-    {% endif %}
-    {% endfor %}
+    </div>
+    </div>
 
 
-    <a href="{% url 'portfolio:login' %}">Login</a>
-    <a href="{% url 'portfolio:logout' %}">Logout</a>
+
+
+    <div class="cadeiras">
+        <div class="cadeiras-container">
+        {% for cadeira in cadeiras %}
+            <div class="cadeira">
+
+
+                    <div class="cadeira-titulo">
+                        <h3>{{ cadeira.nome}}</h3>
+                    </div>
+
+                    <div class="cadeira-texto">
+                        <ul>
+                            <li>Ano: {{ cadeira.ano }}</li>
+                            <li>Docente Teórica: <a href="{{ cadeira.docente_teorica.linkedin}}">{{ cadeira.docente_teorica }}</a> </li>
+                            <li>Docente Prática: <a href="{{ cadeira.docente_pratica.linkedin}}">{{ cadeira.docente_teorica }}</a> </li>
+                            <li>Classificação: {{ cadeira.classificacao }}</li>
+                            <li>Projeto: <a href="{% url 'portfolio:projectos' %}">{{ cadeira.projetos.nome }}</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="alterar">
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'portfolio:editar_cadeira' cadeira.id %}">Editar</a>
+                        {% endif %}
+
+                    </div>
+
+
+
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+     {% if request.user.is_authenticated %}
+         <a href="{% url 'portfolio:novo_cadeira' %}">Nova</a>
+     {% endif %}
 {% endblock %}

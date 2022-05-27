@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
+
+
+h1{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin:50px
+}
+.projectos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.projecto-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.projecto{
+    display: flex;
+    margin: 20px;
+    padding: 20px;
+    width: 500px;
+    background-color: #222f34;
+    border-radius: 7px;
+
+
+}
+
+.projecto-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px;
+}
+
+.projecto-title h3{
+    color: white;
+    font-weight: lighter;
+    text-transform: uppercase;
+    margin-left: 15px;
+}
+
+.projecto-text > p{
+    color: white;
+    margin-left: 15px;
+    text-align-all: justify;
+}
+
+
+

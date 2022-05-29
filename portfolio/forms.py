@@ -37,7 +37,7 @@ class PostForm(ModelForm):
         labels = {
             'titulo': 'Título',
             'autor': 'Autor',
-            'description': 'Descrição'
+            'description': 'Post'
         }
 
         widgets = {
@@ -46,9 +46,7 @@ class PostForm(ModelForm):
             'autor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'nome'}),
         }
 
-        help_texts = {
-            'description': 'descrição sobre o Post de até 280 caracteres',
-        }
+
 
 
 class CadeiraForm(ModelForm):

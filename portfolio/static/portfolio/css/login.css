@@ -1,0 +1,90 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
+
+body{
+    background-image: url("../images/login.jpg");
+
+    background:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/login.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed
+}
+.titulo{
+    padding: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: Oswald;
+    font-size: 30px;
+    font-weight: 400;
+    color: white;
+
+}
+
+.form-main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form{
+
+    width: 500px;
+    padding: 40px;
+    border-radius: 8px;
+    background-color: white;
+    font-family: 'Oswald';
+    box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+}
+
+.campo{
+    width: 100%;
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px 0px;
+    text-indent: 6px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Oswald';
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+.submit{
+    border-style: none;
+    border-radius: 5px;
+    background-color: #bef5fa;
+    padding: 8px 20px;
+    font-family: 'Oswald';
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    box-shadow: 2px 2px 5px rgb(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.form-div{
+    text-transform: uppercase;
+}
+.form-div > label{
+    letter-spacing: 3px;
+    font-size: 1rem;
+}
+
+.info-div {
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.info-div a{
+    color: black;
+}
+
+.info-div a:hover{
+    color: cadetblue;
+}

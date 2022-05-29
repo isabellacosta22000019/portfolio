@@ -1,12 +1,31 @@
 {% extends 'portfolio/layout.html' %}
 
 {% block main %}
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="username">
-        <input type="password" name="password" placeholder="password">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/login.css' %}">
 
-        <input type="submit" value="Login">
-    </form>
-    <a href="{% url 'portfolio:home' %}">Página Inicial</a>
+    <div class="titulo">
+        <h2>Login</h2>
+    </div>
+    <div class="form-main">
+        <div class="form-container">
+            <form action="" method="post" class="form">
+                {% csrf_token %}
+                <div class="form-div">
+                    <label for="username">Username</label>
+                    <input class="campo" type="text" name="username" placeholder="Insira o seu username">
+                    <label for="password">Password</label>
+                    <input class="campo" type="password" name="password" placeholder="Insira a sua password">
+
+                    <input class="submit" type="submit" value="Login">
+                </div>
+                <div class="info-div">
+                    <a href="{% url 'portfolio:home' %}">Página Inicial</a>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
 {% endblock %}

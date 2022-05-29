@@ -1,16 +1,24 @@
 {% extends 'portfolio/layout.html' %}
 {% block main %}
-<h3>Editar Cadeira</h3>
-    <form action="{% url 'portfolio:editar_cadeira' cadeira_id %}" method="post">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/formulario.css' %}">
+    <div class="titulo">
+        <h3>Editar Cadeira</h3>
+    </div>
+
+    <div class="form">
+        <form action="{% url 'portfolio:editar_cadeira' cadeira_id %}" method="post">
 
         {% csrf_token %}
         <table>
             {{ form.as_table }}
         </table>
 
-    <input type="submit" value="Salvar">
+            <input type="submit" value="Salvar">
             <a href="{% url 'portfolio:licenciatura' %}">Cancelar</a>
 
             <a href="{% url 'portfolio:apagar_cadeira' cadeira_id %}">Apagar</a>
-</form>
+        </form>
+    </div>
+
 {% endblock %}

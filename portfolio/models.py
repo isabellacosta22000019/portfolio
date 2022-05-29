@@ -18,7 +18,7 @@ class Post(models.Model):
     autor = models.CharField(max_length=30)
     data = models.DateTimeField(auto_now_add=True)
     titulo = models.CharField(max_length=20)
-    description = models.CharField(max_length=280)
+    description = models.TextField(max_length=300)
 
     link = models.URLField(max_length=200, blank=True)
 

@@ -1,9 +1,14 @@
 {% extends 'portfolio/layout.html' %}
 
 {% block main %}
+        {% load static %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/formulario.css' %}">
 
-        <h1>Quizz sobre Programação Web</h1>
-    <form action="" method="POST">
+    <div class="titulo">
+        <h2>Quizz sobre Programação Web</h2>
+    </div>
+    <div class="form">
+        <form action="" method="POST">
         {% csrf_token %}
                 <fieldset id="main_fieldset">
 
@@ -51,6 +56,8 @@
                 <a href="{% url 'portfolio:home' %}" class="btn btn-warning">Cancelar</a>
                 <input type="submit" value="Gravar" class="btn btn-success" >
             </form>
+    </div>
+
 
         <p>Voce tem: {{ pontos }} pontos</p>
 {% endblock %}

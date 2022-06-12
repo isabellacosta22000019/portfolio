@@ -8,6 +8,7 @@ from .forms import PostForm, CadeiraForm, ProjetoForm
 from .models import *
 
 
+
 def home_page_view(request):
     context = {'tarefas': Tarefa.objects.all()}
     return render(request, 'portfolio/home.html', context)
@@ -70,7 +71,9 @@ def nova_cadeira_view(request):
 
 def projectos_page_view(request):
     projectos = Projeto.objects.all()
-    context = {'projectos': projectos}
+    tfcs = Tfc.objects.all()
+    media = "/media/"
+    context = {'projectos': projectos, 'tfcs': tfcs, 'media': media}
     return render(request, 'portfolio/projectos.html', context)
 
 

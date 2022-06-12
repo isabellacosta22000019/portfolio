@@ -84,3 +84,20 @@ class Cadeira(models.Model):
 
     def __str__(self):
         return str(self.nome)
+
+
+class Autor(models.Model):
+    nome = models.CharField(max_length=50, default='')
+    curso = models.CharField(max_length=80, default='')
+    def __str__(self):
+        return str(self.nome)
+
+
+class Tfc(models.Model):
+    autores = models.ManyToManyField(Autor)
+    orientadores = models.ManyToManyField(Professor)
+    ano = models.IntegerField()
+    titulo = models.CharField(max_length=100, default='')
+    description = models.TextField(max_length=300)
+    link = models.URLField(max_length=200, blank=True)
+    linkgithub = models.URLField(max_length=200, blank=True)

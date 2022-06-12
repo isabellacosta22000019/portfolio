@@ -42,7 +42,7 @@
 
 .about-me{
     background-color: #f3fafa;
-    height: 100vh;
+    height: 60vh;
     display: flex;
     justify-content: space-around;
 
@@ -65,4 +65,43 @@
     font-size: 40px;
     font-weight: 400;
     text-transform: uppercase;
+}
+
+.tempo-container{
+    border-radius: 10px;
+    background: #1c8f94;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr ;
+    gap: 2px 2px;
+    grid-template-areas:
+    "."
+    ".";
+    padding: 10px;
+
+}
+
+.tempo-container > div{
+    color: white;
+}
+
+.tempo{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 20vh;
+    background-color: #f3fafa;
+}
+
+h3{
+   font-family: Oswald;
+    font-size: 40px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.lisboa{
+    background-color: #f3fafa;
 }

@@ -4,6 +4,10 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'portfolio/css/projectos.css' %}">
     <h1>Projectos</h1>
+    <div class="all">
+
+    <div class="grid1">
+
     <div class="projecto-container">
     {% for projecto in projectos %}
 
@@ -26,11 +30,79 @@
                  {% endif %}
             </div>
         </div>
+
         </div>
+
+
     {% endfor %}
+        </div >
+    </div>
+
+    <div class="novo-container">
+        <div>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'portfolio:novo_projecto' %}" class="button">Novo Projecto</a>
+            {% endif %}
+
+        </div>
+    </div>
+
+    </div>
+
+    <div class="tfcs">
+        <div class="titulo2">
+            <h2>TFC</h2>
+        </div>
+        <div class="about-section">
+            <p>Nesta secção temos alguns Trabalhos Finais Cursos realizado na Universidade Lusófona de Humanidades e Tecnologias
+            . Trabalhos estes que possuem um tema e uma abordagem muito interessante do meu ponto de vista.</p>
+
+        </div>
+
+        <div class="tfc-container">
+
+                {% for tfc in tfcs  %}
+                    <div class="tfc">
+                    <div class="tfc-titulo">
+                        {{ tfc.titulo }}
+                    </div>
+                    <div class="tfc-description">
+                        {{ tfc.description }}
+                    </div>
+                    <div class="autores">
+
+                        {% for autor in tfc.autores.all %}
+                            <div>{{ autor }}</div>
+                        {% endfor %}
+
+
+
+
+                    </div>
+                    <div class="orientadores">
+
+
+                        {% for orientador in tfc.orientadores.all %}
+                            <div>{{ orientador }}</div>
+                        {% endfor %}
+
+
+                    </div>
+
+                    <div class="links">
+                        <a href="{{ tfc.link }}  ">Link</a>
+                        <a href="{{ tfc.linkgithub }} ">Github</a>
+                    </div>
+
+
+
+                </div>
+                {% endfor %}
+
+
+        </div>
+    </div>
+
 </div>
-    {% if request.user.is_authenticated %}
-        <a href="{% url 'portfolio:novo_projecto' %}">Novo Projecto</a>
-    {% endif %}
-</div>
+
 {% endblock %}

@@ -89,3 +89,37 @@ class ProjetoForm(ModelForm):
     descricao = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'descrição'})
     image = forms.ImageField
 
+
+class AutorForm(ModelForm):
+    class Meta:
+        model = Autor
+        fields = '__all__'
+
+        labels = {
+            'titulo': 'Título',
+            'autor': 'Autor',
+            'description': 'Descrição'
+        }
+
+    nome = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'nome'})
+    curso = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'curso'})
+
+    class TfcForm(ModelForm):
+        class Meta:
+            model = Tfc
+            fields = '__all__'
+
+            labels = {
+                'titulo': 'Título',
+                'autor': 'Autor',
+                'description': 'Descrição'
+            }
+
+        nome = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'nome'})
+        autores = forms.ModelMultipleChoiceField(queryset=Autor.objects.all())
+        orientadores = forms.ModelMultipleChoiceField(queryset=Professor.objects.all())
+        ano = forms.ImageField()
+        titutlo = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'titulo'})
+        description = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'description'})
+        link = forms.URLField()
+        linkgithub= forms.URLField()

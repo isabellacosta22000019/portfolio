@@ -10,12 +10,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
     </head>
+    <script>
+                fetch('https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json')
+                .then(resp => resp.json())
+                .then(data =>{
+                    const tempmin = data.data[0].tMin
+                    const tempmax = data.data[0].tMax
+                    const nome = data.data[0].n
+
+                    document.getElementById('temperatura_minima').innerHTML = 'Temperatura Mínima: ' + tempmin + 'ºC'
+                    document.getElementById('temperatura_maxima').innerHTML = 'Temperatura Máxima: ' + tempmax + 'ºC'
+                })
+            </script>
     <link rel="stylesheet" href="{% static 'portfolio/css/home.css' %}">
     <section>
         <div class="hero">
             <div class="hero-text">
-                <h1>Alguma coisa motivacional</h1>
-                <h2>e mais alguma coisa</h2>
+                <h1>„Se podes olhar, vê. Se podes ver, repara.“
+                </h1>
+
             </div>
 
         </div>
@@ -24,15 +37,35 @@
         <div class="about-me">
             <div class="about-me-text">
                 <h2>Sobre mim</h2>
-            <p>Eu queria querer-te amar o amor
-                Construir-nos dulcíssima prisão
-                Encontrar a mais justa adequação
-                Tudo métrica e rima e nunca dor
-                Mas a vida é real e é de viés
-                E vê só que cilada o amor me armou
-                Eu te quero e não queres como sou
-                Não te quero e não queres como és</p>
+            <p>Estudante de Engenharia Informática na Universidade Lusófona de Humanidades e Tecnologias. Sempre
+            motivada a aprender novas coisas e evoluir minhas habilidades.</p>
             </div>
+
+
+
         </div>
+
+
+
+
     </section>
+
+    <div class="lisboa">
+                <h3>Tempo Lisboa</h3>
+            </div>
+    <div class="tempo">
+
+
+            <div class="tempo-container">
+                <div id="temperatura_minima">
+                </div>
+                <div id="temperatura_maxima">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
 {% endblock %}

@@ -174,3 +174,17 @@ iframe{
     padding: 30px;
 }
 
+.horas-container{
+    display: flex;
+    justify-content: space-around;
+    background-color: #f3fafa;
+    padding-bottom: 30px;
+}
+
+
+#horas{
+    font-size: 30px;
+  color: #0c0c0c;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}

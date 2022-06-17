@@ -23,6 +23,22 @@
                 })
 
 
+                document.addEventListener('DOMContentLoaded', ()=> {
+                let relogio = document.getElementById('horas');
+
+                setInterval(function () {
+                    let data = new Date();
+                    let am_pm = "";
+
+                    if (data.getHours() >= 12){
+                        am_pm = "PM";
+                    }else {
+                        am_pm = "AM"
+                    }
+
+                    relogio.innerHTML = data.toLocaleTimeString() +" " + am_pm;
+                },1000);
+                })
 
 
     </script>
@@ -50,6 +66,11 @@
 
 
         </div>
+        <div class="horas-container">
+            <div class="hora">
+                <p id="horas">horas</p>
+            </div>
+        </div>
         <div class="iframe">
        <iframe width="560" height="315" src="https://www.youtube.com/embed/X2hEkoKL6Mk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -76,6 +97,8 @@
 
 
         </div>
+
+
 
 
 {% endblock %}

@@ -3,6 +3,12 @@
 {% block main %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'portfolio/css/projectos.css' %}">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Projecto</title>
+    </head>
     <h1>Projectos</h1>
     <div class="all">
 
@@ -39,7 +45,7 @@
     </div>
 
     <div class="novo-container">
-        <div>
+        <div >
             {% if request.user.is_authenticated %}
                 <a href="{% url 'portfolio:novo_projecto' %}" class="button">Novo Projecto</a>
             {% endif %}
@@ -64,15 +70,15 @@
                 {% for tfc in tfcs  %}
                     <div class="tfc">
                     <div class="tfc-titulo">
-                        {{ tfc.titulo }}
+                        <p>{{ tfc.titulo }}</p>
                     </div>
                     <div class="tfc-description">
-                        {{ tfc.description }}
+                        <p>{{ tfc.description }}</p>
                     </div>
                     <div class="autores">
-
+                        <p>Autores: </p>
                         {% for autor in tfc.autores.all %}
-                            <div>{{ autor }}</div>
+                            <p>{{ autor }}</p>
                         {% endfor %}
 
 
@@ -83,14 +89,14 @@
 
 
                         {% for orientador in tfc.orientadores.all %}
-                            <div>{{ orientador }}</div>
+                            <a href="{{ orientador.linkedin}}  ">{{ orientador.nome }}</a>
                         {% endfor %}
 
 
                     </div>
 
                     <div class="links">
-                        <a href="{{ tfc.link }}  ">Link</a>
+                        <a href="{{ tfc.link }}  " class="link-tfc">Link do TFC</a>
                         <a href="{{ tfc.linkgithub }} ">Github</a>
                     </div>
 

@@ -146,18 +146,59 @@ h1{
 .tfc-container{
     display: flex;
     flex-wrap: wrap;
-    padding: 15px;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
 }
 
 .tfc{
-    padding: 30px;
+
+    margin: 20px;
+    padding: 20px;
+    width: 500px;
+    background-color: #222f34;
+    border-radius: 7px;
+    height: 300px;
 }
 
-.tfc-titulo h3{
-
+.tfc-titulo {
+    padding: 10px;
     font-weight: lighter;
     text-transform: uppercase;
+    text-align: center;
+}
 
+div > p{
+    color: white;
+}
+
+.about-section{
+    text-align: center;
+}
+
+a{
+    color: white;
+}
+
+a:hover{
+    color: #6b6683;
+}
+
+.links{
+
+    display: flex;
+    justify-content: end;
+
+}
+
+.links > *{
+    padding: 10px;
+    background-color: cadetblue;
+    border-radius: 10px;
+}
+
+.tfc-description{
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.link-tfc{
+    margin-right: 5px;
 }

@@ -58,6 +58,7 @@
     line-height: 1.6;
     padding:100px;
     margin-top: 40px;
+    padding: 15px;
 }
 
 .about-me-text > h2{
@@ -104,4 +105,72 @@ h3{
 
 .lisboa{
     background-color: #f3fafa;
+    padding: 30px;
+
+
 }
+
+#button{
+    background-color: #222f34;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+/*@media (max-width: 1000px) {
+    .lisboa{
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 850px) {
+    .lisboa{
+        margin-top: 70px;
+    }
+}
+
+@media (max-width: 800px) {
+    .lisboa{
+        margin-top: 500px;
+    }
+}
+
+@media (max-width: 800px) {
+    .lisboa{
+        margin-top: 300px;
+    }
+}*/
+
+iframe{
+    align-self: center;
+   /* margin-left: 700px;
+    padding: 30px;*/
+}
+
+.iframe{
+    display: flex;
+    justify-content: space-around;
+    background-color: #f3fafa;
+    padding: 30px;
+}
+
